@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Thị Như Ý ❤️ Thái</title>
+    <style>
+        body {
+            background-color: #111; /* Nền đen */
+            color: #fff; /* Chữ trắng */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 50px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #ff3366; /* Màu hồng đỏ cho chữ Love */
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .name {
+            color: #00ffcc; /* Màu xanh ngọc cho tên */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="love-container"></div>
+
+    <script>
+        const container = document.getElementById('love-container');
+        let count = 0;
+        const maxLinesToKeep = 150; // Chỉ giữ tối đa 150 dòng trên màn hình để chống giật lag máy
+
+        // Hàm thêm dòng mới
+        function addLine() {
+            count++;
+            
+            // Tạo một thẻ div mới cho mỗi dòng
+            const newLine = document.createElement('div');
+            newLine.innerHTML = `[${count}] <span class="name">Lê Thị Như Ý</span> <span class="highlight">❤️ love ❤️</span> <span class="name">Thái</span>`;
+            
+            // Thêm dòng mới vào trang
+            container.appendChild(newLine);
+
+            // Tự động xóa dòng cũ nhất nếu vượt quá số lượng cho phép (Chống lỗi treo máy)
+            if (container.children.length > maxLinesToKeep) {
+                container.removeChild(container.firstChild);
+            }
+
+            // Lệnh bắt buộc trình duyệt tự động lướt xuống dưới cùng
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        // Cài đặt tốc độ chạy liên tục (20 mili-giây ra 1 dòng)
+        // Bạn có thể chỉnh số 20 nhỏ hơn (chạy nhanh hơn) hoặc lớn hơn (chạy chậm lại)
+        setInterval(addLine, 20);
+
+    </script>
+</body>
+</html>
